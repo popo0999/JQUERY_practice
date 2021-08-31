@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex10</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <style>
+        h1 {
+            font-weight: 900px;
+        }
+
+        .circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .faa {
+            background-color: #faa;
+            /* background: rgb(233,143,4); */
+        }
+
+        .aaa {
+            background-color: #aaa;
+        }
+
+        .demo {
+            width: 100%;
+            height: 500px;
+            border: 10px solid #aaa;
+            transition: 1s;
+            position: relative;
+        }
+
+        .colorText {
+            
+            font-size: 20px;
+            font-weight: 700px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="my-5">今天，你想來點什麼顏色呢</h1>
+            </div>
+            <div class="col-6">
+                <div class="demo">
+                    <!-- <div class="colorText">顏色複製：rgb(255, 255, 255)</div> -->
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="colorSel d-flex flex-wrap">
+                </div>
+                <div class="d-flex justify-content-between mx-3 my-5">
+                    <div class="colorText ">顏色複製：rgb(255, 255, 255)
+                    </div>
+                    <button type="button" class="btn btn-info again">重新選擇</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./jquery-3.6.0.min.js"></script>
+
+    <script>
+        // 隨機取得顏色!
+        function getColor(){
+            for (let i = 1; i <= 12; i++) {
+            $('.colorSel').append(`<div class="circle circle${i} mx-3 my-3"></div>`);
+            // 不能先定義用隨機顏色!!! 因為後面rgb拿到的顏色都會一樣QQ
+            // const colRandom = Math.floor(Math.random() * 256)
+            $(`.circle${i}`).css('background-color',
+                `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`
+            )
+            $(`.circle${i}`).on('click', function () {
+                $('.demo').css('background-color', $(`.circle${i}`).css('background-color'));
+                const colorText = $(`.circle${i}`).css('background-color');
+                console.log(colorText)
+                $('.colorText').text(function () {
+                    return '顏色複製：' + colorText;
+                })
+            });
+        }
+        }
+        
+        getColor();
+        $('.again').on('click',function(){
+            $('.colorSel').removeClass('colorSel')
+            getColor();
+        });
+        
+        
+        // for (let i = 1; i <= 12; i++) {
+        //     $('.colorSel').append(`<div class="circle circle${i} mx-3 my-3"></div>`);
+        //     // 不能先定義用隨機顏色!!! 因為後面rgb拿到的顏色都會一樣QQ
+        //     // const colRandom = Math.floor(Math.random() * 256)
+        //     $(`.circle${i}`).css('background-color',
+        //         `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`
+        //     )
+        //     $(`.circle${i}`).on('click', function () {
+        //         $('.demo').css('background-color', $(`.circle${i}`).css('background-color'));
+        //         const colorText = $(`.circle${i}`).css('background-color');
+        //         console.log(colorText)
+        //         $('.colorText').text(function () {
+        //             return '顏色複製：' + colorText;
+        //         })
+        //     });
+        // }
+
+        // 解法一: 先取得css顏色，再將它放入bgc
+        // $('.circle1').on('click', function () {
+        //     const pink = $('.circle1').css('background-color')
+        //     $('.demo').css('background-color', `${pink}`)
+        // });
+        // $('.circle2').on('click', function () {
+        //     const gray = $('.circle2').css('background-color')
+        //     $('.demo').css('background-color', `${gray}`)
+        // });
+
+        // 解法二 利用removeClass & addClass
+        // $('.circle1').on('click', function () {
+        //     $('.demo').removeClass('aaa').addClass('faa')
+        // });
+        // $('.circle2').on('click', function () {
+        //     $('.demo').removeClass('faa').addClass('aaa')
+        // });
+    </script>
+</body>
+
+</html>
