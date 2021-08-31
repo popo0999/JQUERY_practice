@@ -15,9 +15,12 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
-        *{
-            font-family: 'Noto Sans TC', sans-serif;;
+
+        * {
+            font-family: 'Noto Sans TC', sans-serif;
+            ;
         }
+
         h1 {
             font-weight: 900px;
         }
@@ -46,7 +49,7 @@
         }
 
         .colorText {
-            
+
             font-size: 20px;
             font-weight: 700px;
 
@@ -82,49 +85,42 @@
 
     <script>
         // 隨機取得顏色!
-        function getColor(){
+        function getColor() {
             for (let i = 1; i <= 12; i++) {
-            $('.colorSel').append(`<div class="circle circle${i} mx-3 my-3"></div>`);
-            // 不能先定義用隨機顏色!!! 因為後面rgb拿到的顏色都會一樣QQ
-            // const colRandom = Math.floor(Math.random() * 256)
-            $(`.circle${i}`).css('background-color',
-                `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`
-            )
-            $(`.circle${i}`).on('click', function () {
-                $('.demo').css('background-color', $(`.circle${i}`).css('background-color'));
-                const colorText = $(`.circle${i}`).css('background-color');
-                console.log(colorText)
-                $('.colorText').text(function () {
-                    return '顏色複製：' + colorText;
-                })
-            });
+                // 在colorSel裡面塞新的div!
+                $('.colorSel').append(`<div class="circle circle${i} mx-3 my-3"></div>`);
+
+                // 不能先定義用隨機顏色!!! 因為後面rgb拿到的顏色都會一樣QQ
+                // const colRandom = Math.floor(Math.random() * 256)
+                $(`.circle${i}`).css('background-color',
+                    `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`
+                )
+
+                // 當顏色圈圈被點擊時
+                $(`.circle${i}`).on('click', function () {
+                    // 改變左邊demo裡的顏色，拿到跟顏色圈圈一樣的顏色
+                    $('.demo').css('background-color', $(`.circle${i}`).css('background-color'));
+
+                    // 拿到顏色圈圈的rgb文字，並改變colorText裡的文字內容
+                    const colorText = $(`.circle${i}`).css('background-color');
+                    // console.log(colorText)
+                    $('.colorText').text(function () {
+                        return '顏色複製：' + colorText;
+                    })
+                });
+            }
         }
-        }
-        
+
         getColor();
-        $('.again').on('click',function(){
+        $('.again').on('click', function () {
             $('.colorSel').removeClass('colorSel')
             getColor();
         });
-        
-        
-        // for (let i = 1; i <= 12; i++) {
-        //     $('.colorSel').append(`<div class="circle circle${i} mx-3 my-3"></div>`);
-        //     // 不能先定義用隨機顏色!!! 因為後面rgb拿到的顏色都會一樣QQ
-        //     // const colRandom = Math.floor(Math.random() * 256)
-        //     $(`.circle${i}`).css('background-color',
-        //         `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`
-        //     )
-        //     $(`.circle${i}`).on('click', function () {
-        //         $('.demo').css('background-color', $(`.circle${i}`).css('background-color'));
-        //         const colorText = $(`.circle${i}`).css('background-color');
-        //         console.log(colorText)
-        //         $('.colorText').text(function () {
-        //             return '顏色複製：' + colorText;
-        //         })
-        //     });
-        // }
 
+
+
+
+        // 上課時寫的寫法
         // 解法一: 先取得css顏色，再將它放入bgc
         // $('.circle1').on('click', function () {
         //     const pink = $('.circle1').css('background-color')
