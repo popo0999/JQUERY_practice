@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>動態收起選單效果</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <style>
+        .box {
+            padding: 50px;
+            background-color: #daa;
+            width: 100%;
+            height: 800px;
+        }
+
+        .fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .hide {
+            transform: translateY(-100px);
+        }
+
+        .banner {
+            margin-top: 60px;
+        }
+
+        nav {
+            color: antiquewhite;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark
+     bg-dark fixed
+    ">
+        <a class="navbar-brand" href="#">請先往下滾，再往上滾</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div class="banner w-100 p-3">
+        <h1>歡迎來到～nav的動態收起選單效果</h1>
+    </div>
+    <div class="banner bannerimg mt-0">
+        <img src="./imgs/background1.jpg" class="w-100" alt="">
+    </div>
+    <div class="container box">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt maxime, omnis quidem incidunt, ex
+            recusandae blanditiis possimus amet nam perferendis ipsum neque iure provident laboriosam corporis illo
+            pariatur distinctio. Itaque?</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+    </script>
+
+    <script>
+        let lastScroll = $(this).scrollTop();
+        $(window).scroll(function () {
+            let nowScroll = $(this).scrollTop();
+            // console.log('lastScroll',lastScroll)
+            // console.log('nowScroll',$(this).scrollTop())
+            if (lastScroll < nowScroll) {
+                $('nav').addClass('hide')
+            } else {
+                $('nav').removeClass('hide')
+            }
+            
+            // 標竿法RRRRRRRRRRRRRRRRRR
+            // 要更新scrollTop QQQQQQQQQQQQQQQqqqqqqq
+            // 竟然想到ㄌ真想哭QQQQQQ
+            lastScroll = $(this).scrollTop();
+
+            // 更改文字
+            if (nowScroll>50) {
+                $('.navbar-brand').text(function () {
+                    return '往上滾就會出現我喔！'
+                })
+            }
+            if ($(window).scrollTop() == 0) {
+                $('.navbar-brand').text(function () {
+                    return '請先往下滾，再往上滾'
+                })
+            }
+        });
+    </script>
+
+</body>
+
+</html>
