@@ -33,9 +33,9 @@
 
         }
 
-        .transition {
+        /* .transition {
             transition: 1s;
-        }
+        } */
 
         li.car img {
             width: 100%;
@@ -138,18 +138,18 @@
         });
 
         function changePage() {
-            if (page == 8) {
-                $('ul.train').css('transform', `translateX(${-3000}px)`).one('animationend',function(){
-                    $(this).removeClass('transition')
-                })
-                page = 0;
-                console.log('hi')
-            }
             let moveX = ((page) * -1000) - 1000;
 
-            $('ul.train').css('transform', `translateX(${moveX}px)`)
+            $('ul.train').css('transition', '0.5s').css('transform', `translateX(${moveX}px)`)
             $(".slider-dots li").eq(page).css("background", "#FFF").siblings().css("background", "transparent");
-            
+
+        }
+
+        function changePageQuietly() {
+            let moveX = ((page) * -1000) - 1000;
+            $('ul.train').css('transition', 'none').css('transform', `translateX(${moveX}px)`)
+            $(".slider-dots li").eq(page).css("background", "#FFF").siblings().css("background", "transparent");
+
         }
 
         // startInterval();
@@ -157,16 +157,36 @@
 
         $('.prev').on('click', function () {
             page--;
+            if (page < -1) {
+                console.log('insidePrev?')
+                return;
+            };
             changePage();
         });
 
         $('.next').on('click', function () {
-            console.log(page)
+            console.log('next',page)
             page++;
-            if (page > 6) {
-            }
+            if (page > 7) {
+                return;
+            };
             changePage();
         });
+
+        $('.train').on('transitionend', function () {
+            console.log('end',page)
+            if (page >= 7) {
+                page = 0;
+                changePageQuietly();
+            }
+        });
+        $('.train').on('transitionend', function () {
+            console.log('prevEnd',page)
+            if (page < 0) {
+                page = 6;
+                changePageQuietly();
+            }
+        })
 
         changePage();
     </script>
