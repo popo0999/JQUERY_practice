@@ -19,7 +19,7 @@
             max-width: 1000px;
             overflow: hidden;
             /* width: 100px; */
-            height: 525px;
+            height: 580px;
             position: relative;
         }
 
@@ -39,7 +39,7 @@
 
         li.car img {
             width: 100%;
-            height: 100%;
+            /* height: 100%; */
             object-fit: cover;
         }
 
@@ -77,11 +77,20 @@
         .next {
             right: 0;
         }
+
+        h1 {
+            margin: 10px auto;
+            /* height: 0; */
+        }
     </style>
 </head>
 
 <body>
+    
+       
+   
     <div class="wrap">
+ <h1>無限列車 無限循環輪播牆</h1>
         <ul class="train transition">
             <li class="car"><img src="./imgs/0.jfif" alt=""></li>
             <li class="car"><img src="./imgs/6.jfif" alt=""></li>
@@ -165,7 +174,7 @@
         });
 
         $('.next').on('click', function () {
-            console.log('next',page)
+            console.log('next', page)
             page++;
             if (page > 7) {
                 return;
@@ -174,14 +183,14 @@
         });
 
         $('.train').on('transitionend', function () {
-            console.log('end',page)
+            console.log('end', page)
             if (page >= 7) {
                 page = 0;
                 changePageQuietly();
             }
         });
         $('.train').on('transitionend', function () {
-            console.log('prevEnd',page)
+            console.log('prevEnd', page)
             if (page < 0) {
                 page = 6;
                 changePageQuietly();
