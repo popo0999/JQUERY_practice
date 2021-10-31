@@ -29,7 +29,7 @@
             height: 100%;
             list-style: none;
             padding: 0;
-            transform: translateX(-0px);
+            transform: translateX(-1000px);
 
         }
 
@@ -128,11 +128,11 @@
         function startInterval() {
             myID = setInterval(() => {
                 page++;
-                if (page > 6) {
+                if (page > 7) {
                     page = 0;
                 }
                 changePage();
-            }, 2000);
+            }, 5000);
         }
 
         $('.slider-dots li').hover(function () {
@@ -143,7 +143,7 @@
             changePage();
 
         }, function () {
-            // startInterval();
+            startInterval();
         });
 
         function changePage() {
@@ -161,7 +161,7 @@
 
         }
 
-        // startInterval();
+        startInterval();
         $('.slider-dots li').eq(0).css('background', '#fff');
 
         $('.prev').on('click', function () {

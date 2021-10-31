@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <style>
-        .wrap{
+        .wrap {
             max-width: 800px;
         }
     </style>
@@ -20,7 +20,7 @@
     <div class="wrap mx-auto my-5">
         <div class="container">
             <div class="row">
-                
+
                 <div class=" col-12 demo">
                     <h1>歡迎來到～圖片點選更換</h1>
                     <img class="w-100" src="./imgs/1.jfif" alt="">
@@ -46,13 +46,19 @@
     <script src="./jquery-3.6.0.min.js"></script>
 
     <script>
-    for (let i = 1; i < 7; i++) {
-        $(`.pic${i}`).on('click',function(){
-            console.log(`.pic${i}`);
-            $('.demo img').attr('src',`./imgs/${i}.jfif`)
+        // 又多繞了一圈的for迴圈QQQQQ    
+        // for (let i = 1; i < 7; i++) {
+        //     $(`.pic${i}`).on('click',function(){
+        //         console.log(`.pic${i}`);
+        //         $('.demo img').attr('src',`./imgs/${i}.jfif`)
+        //     })
+        // }
+
+        // this好工具RRRRRRRRRR 不要忘記惹QQQ
+        $('.sel img').on('click', function () {
+            console.log();
+            $('.demo img').attr('src', $(this).attr('src'))
         })
-    }
-    
     </script>
 </body>
 
